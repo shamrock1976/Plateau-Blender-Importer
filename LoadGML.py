@@ -114,7 +114,7 @@ class LoadGML:
                     gmlid = data.attrib[self.GMLID] 
                     enableTexture = True
                 #posList.append({"id":gmlid,"vertex":np.asfarray(child.text.split(" "),dtype=float)})
-                posList.append(Verts(gmlid, np.asfarray(child.text.split(" "),dtype=np.float64),lod ) )
+                posList.append(Verts(gmlid, np.asfarray(child.text.strip().split(" "),dtype=np.float64),lod ) )
         return (posList,enableTexture,uri,lod)
     def CreateDict(self,data):
         gmlid = data.attrib[self.GMLID]
