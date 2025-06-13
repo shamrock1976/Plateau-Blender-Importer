@@ -24,14 +24,15 @@ class SetMesh:
     def __init__(self):
         pass
     def create_material(self,directory,texture,emission):
-        path_to_file = (os.path.join(directory, texture))
-        image = bpy.data.images.load(path_to_file)
         mat = bpy.data.materials.new(texture)
         mat.use_nodes = True
         nodes = mat.node_tree.nodes
         tex = nodes.new(type='ShaderNodeTexImage')
         tex.location = (-300,300)
-        tex.image = image
+        path_to_file = (os.path.join(directory, texture))
+        if os.path.isfile(path_to_file):
+            image = bpy.data.images.load(path_to_file)
+            tex.image = image
         bsdf = None
         #ShaderNodeBsdfPrinciple
         #ShaderNodeEmission
